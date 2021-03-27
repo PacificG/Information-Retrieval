@@ -3,22 +3,22 @@ def perf_measure(y_actual, y_hat):
   """
   calculates TP, FP, TN, FN for actual and predicted y
   """
-    TP = 0
-    FP = 0
-    TN = 0
-    FN = 0
+  TP = 0
+  FP = 0
+  TN = 0
+  FN = 0
 
-    for i in range(len(y_hat)): 
-        if y_actual[i]==y_hat[i]==1:
-           TP += 1
-        if y_hat[i]==1 and y_actual[i]!=y_hat[i]:
-           FP += 1
-        if y_actual[i]==y_hat[i]==0:
-           TN += 1
-        if y_hat[i]==0 and y_actual[i]!=y_hat[i]:
-           FN += 1
+  for i in range(len(y_hat)): 
+      if y_actual[i]==y_hat[i]==1:
+          TP += 1
+      if y_hat[i]==1 and y_actual[i]!=y_hat[i]:
+          FP += 1
+      if y_actual[i]==y_hat[i]==0:
+          TN += 1
+      if y_hat[i]==0 and y_actual[i]!=y_hat[i]:
+          FN += 1
 
-    return(TP, FP, TN, FN)
+  return(TP, FP, TN, FN)
 
 def micro_precision(dic):
   """
@@ -71,3 +71,8 @@ def macro_f1(macro_p, macro_rec):
   """
   return 2*(macro_p*macro_rec)/(macro_p+macro_rec)
 
+def count():
+  i = 0
+  while True:
+    yield i
+    i += 1

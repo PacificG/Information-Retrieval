@@ -4,6 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from gensim.test.utils import datapath
 from gensim import utils
 from gensim.parsing.preprocessing import preprocess_string, preprocess_documents
+from utils import *
 
 class document:
   """
@@ -50,7 +51,6 @@ class vectorize:
     itr = self.iter()
     termdocMat = TfidfVectorizer(self.documents, token_pattern='[a-zA-Z]+', stop_words={'english'}).fit_transform(itr)
     self.tfidfdoc = termdocMat[:len(self.documents), :]
-    c= count()
     self.tfidftestdoc = termdocMat[len(self.documents):,:]
     del termdocMat
 
@@ -81,9 +81,11 @@ class vectorize:
 from gensim.parsing.preprocessing import preprocess_string, preprocess_documents 
 class MyCorpus:
       """An iterator that yields sentences (lists of str)."""
+      def __init__(self, vec):
+        self.vec = vec
 
       def __iter__(self):
-        for file in vec.documents:
+        for file in self.vec.documents:
           yield file.read().lower().split()
-        for file in vec.testdocs:
-          yield file.read().lower().split()      
+        for file in self.vec.testdocs:
+          yield file.read().lower().split() 
